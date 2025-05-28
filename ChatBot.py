@@ -2,7 +2,7 @@ import json
 import google.generativeai as genai
 
 # Configuração da API da IA
-API_KEY = "Put your key here" 
+API_KEY = "Coloque a chave aqui" 
 genai.configure(api_key=API_KEY)
 
 # Configuração do Modelo  e Personalidade
