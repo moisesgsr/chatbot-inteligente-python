@@ -1,11 +1,11 @@
 import json
 import google.generativeai as genai
 
-# Configuração da API do Gemini
-API_KEY = "AIzaSyBwk_ov_5qAE6JMAjiPgVqNDrcboq8S13U" 
+# Configuração da API da IA
+API_KEY = "Put your key here" 
 genai.configure(api_key=API_KEY)
 
-# Configuração do Modelo Gemini e Personalidade
+# Configuração do Modelo  e Personalidade
 model = genai.GenerativeModel('gemini-1.5-flash-latest')
 PROMPT_PERSONALIDADE = (
     "Você é um assistente de chatbot amigável e prestativo, especializado em conceitos "
@@ -32,12 +32,10 @@ def carregar_anotacoes():
         return []
 
 def salvar_anotacoes(anotacoes):
-    """Salva as anotações em um arquivo JSON."""
     with open(NOME_ARQUIVO_ANOTACOES, 'w', encoding='utf-8') as f:
         json.dump(anotacoes, f, indent=4, ensure_ascii=False)
 
 def mostrar_ajuda(nome_usuario_param):
-    """Exibe a lista de comandos que o chatbot entende."""
     print(f"Chatbot: Olá, {nome_usuario_param}! Aqui estão algumas coisas que posso fazer:")
     print("- Dizer 'ajuda' ou 'comandos' (para ver esta lista)")
     print("- 'Adicionar anotação', 'ver anotações', 'remover anotação'")
@@ -55,17 +53,17 @@ print(f"Chatbot: Olá {nome_usuario}, um prazer conversar com você!")
 # Pausa para iniciar o loop principal
 input("Chatbot: Tudo pronto! Pressione ENTER para começar a conversar: ")
 
-# Carrega as anotações ao iniciar
+
 lista_de_anotacoes = carregar_anotacoes()
 
-# --- Loop Principal do Chatbot (Versão Otimizada/Focada) ---
+# --- Loop Principal do Chatbot  ---
 while True:
     print("\nChatbot: Estou ouvindo...")
     entrada_do_usuario = input(f"{nome_usuario}: ")
 
-    # Comandos Essenciais (Prioridade Alta)
+    # Comandos Essenciais 
     if entrada_do_usuario.lower() == "sair":
-        salvar_anotacoes(lista_de_anotacoes) # Salva anotações ao sair
+        salvar_anotacoes(lista_de_anotacoes) 
         print(f"Chatbot: Até logo, {nome_usuario}!")
         break
     elif entrada_do_usuario.lower() == "ajuda" or entrada_do_usuario.lower() == "comandos":
