@@ -1,0 +1,13 @@
+# Ignora o ambiente virtual
+.venv/
+venv/ # Inclui venv/ caso tenha usado esse nome em algum momento
+
+# Ignora o arquivo de variáveis de ambiente (CRÍTICO!)
+.env
+
+# Ignora o arquivo de anotações (se você não quiser versioná-lo, pois pode conter dados sensíveis ou temporários)
+anotacoes_chatbot.json
+
+# Ignora caches Python
+__pycache__/
+*.pyc
