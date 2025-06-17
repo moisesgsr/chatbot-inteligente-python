@@ -10,13 +10,7 @@ import requests
 import os
 from dotenv import load_dotenv
 
-<<<<<<< HEAD
 load_dotenv()
-=======
-# Configuração da API da IA
-API_KEY = "Coloque a chave aqui" 
-genai.configure(api_key=API_KEY)
->>>>>>> d571c77f362e1419f83b2ca9e8b4a14b8f18506e
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
@@ -33,7 +27,7 @@ if not GOOGLE_CSE_API_KEY or not GOOGLE_CSE_CX_ID:
 if not OPENWEATHER_API_KEY:
     print("AVISO: Variável de ambiente OPENWEATHER_API_KEY não definida. A ferramenta de clima não funcionará. Verifique seu arquivo .env.")
 
-# === DEFINIÇÃO DAS FERRAMENTAS DO GEMINI ===
+# DEFINIÇÃO DAS FERRAMENTAS DO GEMINI 
 
 def get_current_date_tool():
     hoje = date.today()
@@ -206,8 +200,7 @@ else:
     print("ERRO CRÍTICO: Não foi possível configurar a API do Gemini. Verifique GEMINI_API_KEY no seu arquivo .env")
     model = None
 
-# === PERSONALIDADE DO CHATBOT ===
-# >>> AJUSTES PARA SER CONCISO E SEM ASTERISCOS (AINDA MAIS FORTE) <<<
+#  PERSONALIDADE DO CHATBOT 
 PROMPT_PERSONALIDADE = """
 Você é o RegAI, um assistente virtual **altamente inteligente, amigável, prestativo e com um toque de bom humor**.
 **Seu propósito principal é ser um companheiro de conversa e um especialista multifacetado.**
@@ -266,13 +259,13 @@ VOCÊ TEM ACESSO A FERRAMENTAS PARA OBTER A DATA, A HORA, O DIA DA SEMANA ATUAIS
 - Se o usuário pedir para você ser uma persona específica, tente se adaptar a essa persona em suas respostas seguintes.
 """
 
-# === VARIÁVEIS DE CONTROLE ===
+# VARIÁVEIS DE CONTROLE 
 chat_history = []
 waiting_for_annotation = False
 codigo = "anotacoes_chatbot.json"
 gemini_chat_session = None
 
-# === LOCALIZAÇÃO DA DATA EM PORTUGUÊS ===
+# LOCALIZAÇÃO DA DATA EM PORTUGUÊS 
 for loc in ['pt_BR.utf8', 'Portuguese_Brazil.1252', 'pt_BR', 'pt_BR.UTF-8']:
     try:
         locale.setlocale(locale.LC_TIME, loc)
@@ -280,7 +273,7 @@ for loc in ['pt_BR.utf8', 'Portuguese_Brazil.1252', 'pt_BR', 'pt_BR.UTF-8']:
     except locale.Error:
         pass
 
-# === FUNÇÕES AUXILIARES PARA ANOTAÇÕES ===
+#  FUNÇÕES AUXILIARES PARA ANOTAÇÕES 
 def carregar_anotacoes():
     try:
         with open(codigo, 'r', encoding='utf-8') as f:
@@ -306,20 +299,19 @@ def search_web(query):
     else:
         return f"Simulando: Sua pesquisa por '{query}' retornou alguns resultados relevantes. No momento, não consigo acessar a web para detalhes."
 
-# === ROTA INICIAL PARA INDEX.HTML ===
+# ROTA INICIAL PARA INDEX.HTML 
 @app.route('/')
 def serve_index():
     return app.send_static_file('index.html')
 
-# === CARREGAMENTO INICIAL DAS ANOTAÇÕES ===
+# CARREGAMENTO INICIAL DAS ANOTAÇÕES 
 lista_de_anotacoes = carregar_anotacoes()
 
-# === ROTA DE CONVERSA COM O CHATBOT ===
+#  ROTA DE CONVERSA COM O CHATBOT 
 @app.route('/chat', methods=['POST'])
 def chat():
     global chat_history, waiting_for_annotation, lista_de_anotacoes, gemini_chat_session
 
-<<<<<<< HEAD
     user_message = request.get_json().get('message', '')
     user_message_lower = user_message.lower()
 
@@ -472,29 +464,7 @@ def chat():
     chat_history.append({"role": "model", "parts": [bot_response]})
     return jsonify({"response": bot_response})
 
-# === EXECUÇÃO DO SERVIDOR ===
+# EXECUÇÃO DO SERVIDOR 
 if __name__ == '__main__':
     print("Iniciando o servidor Flask para o Chatbot...")
     app.run(debug=True, port=8000)
-=======
-    # Comandos Essenciais 
-    if entrada_do_usuario.lower() == "sair":
-        salvar_anotacoes(lista_de_anotacoes) 
-        print(f"Chatbot: Até logo, {nome_usuario}!")
-        break
-    elif entrada_do_usuario.lower() == "ajuda" or entrada_do_usuario.lower() == "comandos":
-        mostrar_ajuda(nome_usuario)
-    # Fallback para IA (se nenhum comando/condição for reconhecido)
-    else:
-        try:
-            prompt_para_ia = PROMPT_PERSONALIDADE + entrada_do_usuario
-            print(f"Chatbot: Pensando... (usando IA)")
-            response = model.generate_content(prompt_para_ia)
-            if response.text:
-                print(f"Chatbot (IA): {response.text}")
-            else:
-                print(f"Chatbot (IA): Não consegui gerar uma resposta. Tente novamente.")
-        except Exception as e:
-            print(f"Chatbot (ERRO IA): Houve um problema ao conectar com a IA. "
-                  f"Erro: {e}. Verifique sua chave de API ou conexão com a internet.")
->>>>>>> d571c77f362e1419f83b2ca9e8b4a14b8f18506e
