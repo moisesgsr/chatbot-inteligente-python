@@ -90,7 +90,7 @@ body {
 
 .chat-box::-webkit-scrollbar-track {
     background: #2e1a47; 
-} /* <--- CHAVE DE FECHAMENTO ADICIONADA AQUI */
+}
 
 .chat-box::-webkit-scrollbar-thumb {
     background: #5b3f8c; 
@@ -134,7 +134,6 @@ body {
     border-bottom-left-radius: 5px;
 }
 
-/* Efeito de hover nas mensagens para o tema roxo/azul */
 .message:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
@@ -164,7 +163,7 @@ body {
 
 .chat-input input::placeholder {
     color: #a08dc2; 
-} /* <--- CHAVE DE FECHAMENTO ADICIONADA AQUI */
+} 
 
 .chat-input input:focus {
     border-color: #6f47b8; 
