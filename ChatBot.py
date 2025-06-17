@@ -10,7 +10,13 @@ import requests
 import os
 from dotenv import load_dotenv
 
+<<<<<<< HEAD
 load_dotenv()
+=======
+# Configuração da API da IA
+API_KEY = "Coloque a chave aqui" 
+genai.configure(api_key=API_KEY)
+>>>>>>> d571c77f362e1419f83b2ca9e8b4a14b8f18506e
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
@@ -313,6 +319,7 @@ lista_de_anotacoes = carregar_anotacoes()
 def chat():
     global chat_history, waiting_for_annotation, lista_de_anotacoes, gemini_chat_session
 
+<<<<<<< HEAD
     user_message = request.get_json().get('message', '')
     user_message_lower = user_message.lower()
 
@@ -469,3 +476,25 @@ def chat():
 if __name__ == '__main__':
     print("Iniciando o servidor Flask para o Chatbot...")
     app.run(debug=True, port=8000)
+=======
+    # Comandos Essenciais 
+    if entrada_do_usuario.lower() == "sair":
+        salvar_anotacoes(lista_de_anotacoes) 
+        print(f"Chatbot: Até logo, {nome_usuario}!")
+        break
+    elif entrada_do_usuario.lower() == "ajuda" or entrada_do_usuario.lower() == "comandos":
+        mostrar_ajuda(nome_usuario)
+    # Fallback para IA (se nenhum comando/condição for reconhecido)
+    else:
+        try:
+            prompt_para_ia = PROMPT_PERSONALIDADE + entrada_do_usuario
+            print(f"Chatbot: Pensando... (usando IA)")
+            response = model.generate_content(prompt_para_ia)
+            if response.text:
+                print(f"Chatbot (IA): {response.text}")
+            else:
+                print(f"Chatbot (IA): Não consegui gerar uma resposta. Tente novamente.")
+        except Exception as e:
+            print(f"Chatbot (ERRO IA): Houve um problema ao conectar com a IA. "
+                  f"Erro: {e}. Verifique sua chave de API ou conexão com a internet.")
+>>>>>>> d571c77f362e1419f83b2ca9e8b4a14b8f18506e
