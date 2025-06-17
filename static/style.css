@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1a0f2b; /* Roxo escuro bem profundo para o fundo principal */
+    background-color: #1a0f2b; 
     color: #e0e0e0;
     animation: fadeInBackground 1s ease-out forwards;
 }
